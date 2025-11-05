@@ -1,0 +1,40 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+*.swp
+
+# Virtual environment
+venv/
+.env
+*.env
+
+# Djangosettings / env
+.env
+settings.py
+
+*.log
+db.sqlite3
+/staticfiles/
+media/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Docker
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+.env
+# Django migrations
+*/migrations/*.pyc
+*/migrations/__pycache__/
+*/migrations/*.pyo
+# Agar faqat zarur bo‘lsa, .py fayllarni ham istisno qilishingiz mumkin:
+# */migrations/*.py
