@@ -4,7 +4,7 @@ from django.views.generic import CreateView ,UpdateView ,DeleteView , ListView
 from django.contrib.auth.views import LoginView , LogoutView 
 from .forms import UserRegisterForm
 from django.contrib.auth.models import User 
-# Create your views here.
+
 
 def home(request):
     return HttpResponse('hello world')
