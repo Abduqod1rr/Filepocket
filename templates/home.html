@@ -20,9 +20,9 @@
 
   <main class="container">
     <div class="hero">
-      <h1>Welcome back 👋</h1>
-      <p>Fayllaring — xavfsiz, senga tayyor. Yukla, boshqar, yuklab ol.</p>
-      <a href="#" class="btn btn-primary">+ Upload File</a>
+      <h1>Welcome back </h1>
+      <p>FilePocket</p>
+      <a href="{% url 'upload_file' %}" class="btn btn-primary">+ Upload File</a>
     </div>
 
     {% if files %}
@@ -41,12 +41,7 @@
             </div>
             <div class="actions">
               <a class="btn btn-secondary" href="{{ f.file.url }}" download>Download</a>
-              <!-- Agar delete/view url’laring bo‘lsa qo‘shib yubor:
-              <a class="btn btn-ghost" href="{% url 'file_detail' f.id %}">View</a>
-              <form method="post" action="{% url 'file_delete' f.id %}">{% csrf_token %}
-                <button class="btn btn-danger">Delete</button>
-              </form>
-              -->
+         
             </div>
           </div>
         {% endfor %}
@@ -56,7 +51,7 @@
         <div class="empty-icon">💾</div>
         <h3>Hali fayl yo‘q</h3>
         <p>Bir martalik upload ham brendingni qiladi. Boshlaymizmi?</p>
-        <a href="{url 'upload_file' %}" class="btn btn-primary">Upload your first file</a>
+        <a href="{% url 'upload_file' %}" class="btn btn-primary">Upload your first file</a>
       </div>
     {% endif %}
   </main>

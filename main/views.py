@@ -35,8 +35,14 @@ class userlogout(LogoutView):
 class uploadfile(LoginRequiredMixin,CreateView ):
     model = Files
     template_name = 'upload.html'
+    fields=['title','file']
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         form.instance.user=self.request.user
         return super().form_valid(form)
-    
+     # <!-- Agar delete/view url’laring bo‘lsa qo‘shib yubor:
+            #  <a class="btn btn-ghost" href="{% url 'file_detail' f.id %}">View</a>
+            #  <form method="post" action="{% url 'file_delete' f.id %}">{% csrf_token %}
+            ##  </form>
+           #   -->
