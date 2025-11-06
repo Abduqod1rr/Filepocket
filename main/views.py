@@ -1,13 +1,22 @@
-from django.shortcuts import render ,HttpResponse
+from django.shortcuts import render ,HttpResponse,get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView ,UpdateView ,DeleteView , ListView
 from django.contrib.auth.views import LoginView , LogoutView 
 from .forms import UserRegisterForm
 from django.contrib.auth.models import User 
+from .models import Files
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def home(request):
-    return HttpResponse('hello world')
+class Home(LoginRequiredMixin,ListView):
+    model = Files
+    template_name='home.html'
+    context_object_name='files'
+
+    def get_queryset(self):
+        
+        return Files.objects.filter(user=self.request.user)
+    
 
 class registerview(CreateView):
     template_name='register.html'
