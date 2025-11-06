@@ -31,3 +31,12 @@ class userlogin(LoginView):
 
 class userlogout(LogoutView):
     success_url=reverse_lazy('login')
+
+class uploadfile(LoginRequiredMixin,CreateView ):
+    model = Files
+    template_name = 'upload.html'
+
+    def form_valid(self, form):
+        form.instance.user=self.request.user
+        return super().form_valid(form)
+    

@@ -7,7 +7,8 @@ urlpatterns = [
     path("home/", views.Home.as_view(), name="home"),
     path("register/", views.registerview.as_view(), name="register"),
     path("login/", views.userlogin.as_view(), name="login"),
-    path("logout/", views.userlogout.as_view(), name="logout")
+    path("logout/", views.userlogout.as_view(), name="logout"),
+    path("upload/", views.uploadfile.as_view(), name="upload_file")
 ]
 
 if settings.DEBUG:
