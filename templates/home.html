@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home – FilePocket</title>
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <span class="brand-name">FilePocket</span>
+    </div>
+    <nav class="nav">
+      <a href="{% url 'home' %}" class="nav-link active">Home</a>
+      <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <h1>Welcome back 👋</h1>
+      <p>Fayllaring — xavfsiz, senga tayyor. Yukla, boshqar, yuklab ol.</p>
+      <a href="#" class="btn btn-primary">+ Upload File</a>
+    </div>
+
+    {% if files %}
+      <div class="grid">
+        {% for f in files %}
+          <div class="card">
+            <div class="card-head">
+              <div class="file-icon">📄</div>
+              <div class="title" title="{{ f.title }}">{{ f.title }}</div>
+            </div>
+            <div class="meta">
+              <span>Uploaded: {{ f.uploaded_at|date:"Y-m-d H:i" }}</span>
+              <span class="size">
+                <!-- agar o'lchamni ko'rsatmoqchi bo'lsang, modelga size qo'shish kerak -->
+              </span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-secondary" href="{{ f.file.url }}" download>Download</a>
+              <!-- Agar delete/view url’laring bo‘lsa qo‘shib yubor:
+              <a class="btn btn-ghost" href="{% url 'file_detail' f.id %}">View</a>
+              <form method="post" action="{% url 'file_delete' f.id %}">{% csrf_token %}
+                <button class="btn btn-danger">Delete</button>
+              </form>
+              -->
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty">
+        <div class="empty-icon">💾</div>
+        <h3>Hali fayl yo‘q</h3>
+        <p>Bir martalik upload ham brendingni qiladi. Boshlaymizmi?</p>
+        <a href="#" class="btn btn-primary">Upload your first file</a>
+      </div>
+    {% endif %}
+  </main>
+</body>
+</html>
