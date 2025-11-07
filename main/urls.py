@@ -8,7 +8,8 @@ urlpatterns = [
     path("register/", views.registerview.as_view(), name="register"),
     path("login/", views.userlogin.as_view(), name="login"),
     path("logout/", views.userlogout.as_view(), name="logout"),
-    path("upload/", views.uploadfile.as_view(), name="upload_file")
+    path("upload/", views.uploadfile.as_view(), name="upload_file"),
+    path("delete/<int:pk>", views.deletefile.as_view(), name="delete_file")
 ]
 
 if settings.DEBUG:

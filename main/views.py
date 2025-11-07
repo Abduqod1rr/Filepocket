@@ -46,3 +46,12 @@ class uploadfile(LoginRequiredMixin,CreateView ):
             #  <form method="post" action="{% url 'file_delete' f.id %}">{% csrf_token %}
             ##  </form>
            #   -->
+
+class deletefile(LoginRequiredMixin,DeleteView):
+    model=Files
+    success_url=reverse_lazy('home')
+
+
+    def test_func(self):
+        obj=self.get_object()
+        return obj.user==self.request.user

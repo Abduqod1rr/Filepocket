@@ -41,7 +41,10 @@
             </div>
             <div class="actions">
               <a class="btn btn-secondary" href="{{ f.file.url }}" download>Download</a>
-         
+              <form method="post" action="{% url 'delete_file' f.id %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
             </div>
           </div>
         {% endfor %}
