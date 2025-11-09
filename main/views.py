@@ -1,4 +1,4 @@
-from django.shortcuts import render ,HttpResponse,get_object_or_404
+from django.shortcuts import render ,HttpResponse,get_object_or_404,redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView ,UpdateView ,DeleteView , ListView
 from django.contrib.auth.views import LoginView , LogoutView 
@@ -6,6 +6,7 @@ from .forms import UserRegisterForm
 from django.contrib.auth.models import User 
 from .models import Files
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
 
 
 class Home(LoginRequiredMixin,ListView):
@@ -17,6 +18,8 @@ class Home(LoginRequiredMixin,ListView):
         
         return Files.objects.filter(user=self.request.user)
     
+    def test_func(self):
+        return self.request.user.is_authenticated
 
 class registerview(CreateView):
     template_name='register.html'
@@ -29,8 +32,11 @@ class userlogin(LoginView):
     fields=['username','password']
     success_url=reverse_lazy('home')
 
-class userlogout(LogoutView):
-    success_url=reverse_lazy('login')
+def userlogout(request):
+    logout(request)
+    return redirect(reverse_lazy('login'))
+
+    
 
 class uploadfile(LoginRequiredMixin,CreateView ):
     model = Files
