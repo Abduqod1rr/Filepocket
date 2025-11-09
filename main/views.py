@@ -36,7 +36,6 @@ def userlogout(request):
     logout(request)
     return redirect(reverse_lazy('login'))
 
-    
 
 class uploadfile(LoginRequiredMixin,CreateView ):
     model = Files
@@ -47,11 +46,7 @@ class uploadfile(LoginRequiredMixin,CreateView ):
     def form_valid(self, form):
         form.instance.user=self.request.user
         return super().form_valid(form)
-     # <!-- Agar delete/view url’laring bo‘lsa qo‘shib yubor:
-            #  <a class="btn btn-ghost" href="{% url 'file_detail' f.id %}">View</a>
-            #  <form method="post" action="{% url 'file_delete' f.id %}">{% csrf_token %}
-            ##  </form>
-           #   -->
+    
 
 class deletefile(LoginRequiredMixin,DeleteView):
     model=Files
