@@ -12,7 +12,7 @@ venv/
 
 # Djangosettings / env
 .env
-settings.py
+
 
 *.log
 db.sqlite3
