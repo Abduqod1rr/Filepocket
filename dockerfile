@@ -24,13 +24,14 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN python manage.py collectstatic --noinput
+
 # Copy project
 COPY . .
-
-RUN python manage.py collectstatic --noinput
 
 # Expose port
 EXPOSE 8000
 
 # Start Django
 CMD ["gunicorn", "FilePocket.wsgi:application", "--bind", "0.0.0.0:8000"]
+
